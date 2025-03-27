@@ -26,7 +26,7 @@ phases:
       - echo "Running pylint on project root..."
       - pylint --disable=C,W,R *.py 
       - echo "Running pylint on store_inventory..."
-      - pylint --disable=C.W.R store_inventory/**/*.py
+      - pylint --disable=C,W,R store_inventory/**/*.py
 
   build:
     commands:
