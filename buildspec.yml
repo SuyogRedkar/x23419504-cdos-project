@@ -7,8 +7,8 @@ phases:
 
     commands:
       - pip install --upgrade pip
-      - ls 
       - python -m venv env
+      - ls
       - source env/bin/activate
       - pip install -r requirements.txt pylint
 
