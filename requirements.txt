@@ -26,5 +26,5 @@ stripe==11.6.0
 tomli==2.2.1
 tomlkit==0.13.2
 typing_extensions==4.5.0
-urllib3==2.3.0
+urllib3
 zipp==3.15.0
