@@ -17,7 +17,7 @@ mccabe==0.7.0
 packaging==24.2
 Pillow==9.5.0
 platformdirs==4.3.6
-pylint==3.3.5
+pylint
 pytz==2022.7.1
 requests==2.32.3
 soupsieve==2.4
