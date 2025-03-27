@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Delete Product Quantity</h2>
+
+        <p class="lead text-center">Product: <strong>{{ product.name }}</strong></p>
+        <p class="text-center">Current Stock: <span class="badge badge-info">{{ product.stock }}</span></p>
+
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+
+            <button type="submit" class="btn btn-danger btn-block">Delete Quantity</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{% url 'dashboard' %}" class="btn btn-secondary btn-block">Cancel</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

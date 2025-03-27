@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Invoice Page</h1>
+
+        <!-- Display error messages if there are any -->
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div>
+        {% endfor %}
+
+        <form method="POST" class="border p-4 rounded shadow">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="customer_name" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" name="customer_name" id="customer_name" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="customer_number" class="form-label">Customer Number</label>
+                <input type="text" class="form-control" name="customer_number" id="customer_number" required />
+            </div>
+
+            <h3 class="mt-4 mb-3">Select Products</h3>
+            <div class="list-group">
+                {% for product in products %}
+                {% if product.stock > 0 %}
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <input type="checkbox" class="form-check-input me-2" name="product" value="{{ product.id }}" id="product_{{ product.id }}" />
+                            <label for="product_{{ product.id }}" class="form-check-label">
+                                {{ product.name }} - ${{ product.price }} (Stock: {{ product.stock }})
+                            </label>
+                        </div>
+                        <input type="number" class="form-control w-auto" name="quantity" min="1" placeholder="Quantity" />
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="d-flex justify-content-center mt-4">
+                <button type="submit" class="btn btn-primary">Generate Invoice</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4">
+        <h2 class="text-center mb-4">Add Stock / New Product</h2>
+
+        <!-- Display success or error messages -->
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- Add Stock Form for Existing Products -->
+        <h3>Add Stock to Existing Product</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ add_stock_form.as_p }}
+            <button type="submit" name="add_stock" class="btn btn-primary btn-block">Add Stock</button>
+        </form>
+
+        <br>
+
+        <!-- Add New Product Form -->
+        <h3>Add New Product</h3>
+        <form method="POST">
+            {% csrf_token %}
+            {{ product_form.as_p }}
+            <button type="submit" name="add_new_product" class="btn btn-success btn-block">Add Product</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

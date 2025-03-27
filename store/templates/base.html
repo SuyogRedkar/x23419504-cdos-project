@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Inventory Manager</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+      padding: 25px;
+      background-color: #222;
+      border-color: #080808;
+    }
+  
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% if user.is_authenticated %}{% url 'dashboard' %}{% else %}{% url 'store_login' %}{% endif %}">
+    Inventory Manager
+</a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'add_product' %}"><span class="fa fa-user"></span>Add Stock</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'makebill' %}"><span class="fa fa-lock"></span>Make Bill</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'transactions' %}"><span class="fa fa-lock"></span>Transactions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'store_logout' %}"><span class="fa fa-sign-out"></span> Logout</a>
+          </li>
+
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link"><span class="fa fa-sign-in"></span> Login</a>
+          </li>
+        {% endif %}
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+{% if messages %}
+      <div class="alert alert-{{ message }}">
+          {{ message }}
+      </div>
+{% endif %}
+
+{% block content %}
+{% endblock %}
+<br>
+
+<footer class="container-fluid text-center">
+  <p>Created by x23419504</p>
+</footer>
+
+</body>
+</html>
