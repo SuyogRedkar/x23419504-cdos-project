@@ -6,13 +6,10 @@ phases:
       python: 3.8
 
     commands:
-      - pip install --upgrade pip
+      - rm -rf env  # Delete any previous virtual environment
       - python -m venv env
-      - ls -la env/  # Debugging: Check if 'env' directory is created
-      - ls -la env/bin/  # Debugging: Check if 'bin' folder inside 'env' exists
       - source env/bin/activate || . env/bin/activate
-      - which python  # Debugging: Confirm that the virtual env Python is being used
-      - which pip  # Debugging: Confirm that the virtual env pip is being used
+      - pip install --upgrade pip
       - pip install -r requirements.txt pylint
       # Install SonarQube Scanner
       - export SONAR_SCANNER_VERSION=7.0.2.4839
