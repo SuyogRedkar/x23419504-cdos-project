@@ -4,13 +4,22 @@ phases:
   install:
     runtime-versions:
       python: 3.8
-      
+
     commands:
       - pip install --upgrade pip
+      - ls 
       - python -m venv env
       - source env/bin/activate
       - pip install -r requirements.txt pylint
-      
+
+      # Install SonarQube Scanner
+      - export SONAR_SCANNER_VERSION=7.0.2.4839
+      - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux-x64
+      - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux-x64.zip
+      - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+      - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+      - export SONAR_SCANNER_OPTS="-server"
+
   pre_build:
     commands:
       - python --version
@@ -19,6 +28,17 @@ phases:
       - pylint --disable=C *.py 
       - echo "Running pylint on store_inventory..."
       - pylint --disable=C store_inventory/**/*.py
+
+  build:
+    commands:
+      - echo "Running SonarQube Analysis..."
+      - sonar-scanner \
+          -Dsonar.organization=suyogredkar \
+          -Dsonar.projectKey=SuyogRedkar_x23419504-cdos-project \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=SuyogRedkar_x23419504-cdos-project
+
 artifacts:
   files:
     - '**/*'
