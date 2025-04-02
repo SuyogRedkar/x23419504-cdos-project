@@ -10,7 +10,8 @@ phases:
       - yum install -y jq wget tar unzip
       - pip install -r requirements.txt pylint
       # Install Maven
-      - yum install -y java-1.8.0-openjdk
+      - wget https://d1vvhvl2y92vvt.cloudfront.net/amazon-corretto-8-x64-linux-jdk.rpm
+      - yum localinstall -y amazon-corretto-8-x64-linux-jdk.rpm
       - python3 -m pip install --upgrade pip
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.0.2311-linux.zip
       - unzip ./sonar-scanner-cli-4.6.0.2311-linux.zip
