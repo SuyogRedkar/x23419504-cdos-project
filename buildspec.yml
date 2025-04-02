@@ -10,7 +10,7 @@ phases:
       - yum install -y jq wget tar unzip
       - pip install -r requirements.txt pylint
       # Install Maven
-      - wget https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.zip
+      - wget https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip 
       - unzip apache-maven-3.9.9-bin.zip
       - ln -s apache-maven-3.9.9 maven
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
