@@ -11,8 +11,11 @@ phases:
       - source env/bin/activate || . env/bin/activate
       - pip install --upgrade pip
       - pip install -r requirements.txt pylint
-      - apt-get install -y openjdk-17-jdk
-      - java -version
+      # install java
+      - apt-get install -y openjdk-21-jdk
+      - export JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64
+      - export PATH=$JAVA_HOME/bin:$PATH
+      - java -version  # Verify Java version
       # Install SonarQube Scanner
       - apt-get update
       - apt-get install -y jq
