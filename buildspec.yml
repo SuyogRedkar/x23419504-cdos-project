@@ -12,8 +12,7 @@ phases:
       # Install Maven
       - wget https://downloads.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
       - tar xzf apache-maven-3.9.6-bin.tar.gz
-      - mv apache-maven-3.9.6 /opt/maven
-      - export PATH=/opt/maven/bin:$PATH
+      - export PATH=/maven/bin:$PATH
       - mvn -version
       
       # Install SonarScanner
