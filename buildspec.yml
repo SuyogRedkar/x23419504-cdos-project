@@ -10,8 +10,6 @@ phases:
       - yum install -y jq wget tar unzip
       - pip install -r requirements.txt pylint
       # Install Maven
-      - apt-get update
-      - apt-get install -y jq
       - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
       - tar xzf apache-maven-3.5.4-bin.tar.gz
       - ln -s apache-maven-3.5.4 maven
