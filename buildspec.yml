@@ -12,12 +12,14 @@ phases:
       - pip install --upgrade pip
       - pip install -r requirements.txt pylint
       # Install SonarQube Scanner
-      - export SONAR_SCANNER_VERSION=7.0.2.4839
-      - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux-x64
-      - curl --create-dirs -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux-x64.zip
-      - unzip -o $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-      - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-      - export SONAR_SCANNER_OPTS="-server"
+      - apt-get update
+      - apt-get install -y jq
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
+      - echo "Current path is >>>"
+      - sh $pwd
+      - unzip ./sonar-scanner-cli-4.7.0.2747-linux.zip
+      - ls $pwd
+      - export PATH=$PATH:./sonar-scanner-4.7.0.2747-linux/bin/
 
   pre_build:
     commands:
@@ -30,13 +32,12 @@ phases:
 
   build:
     commands:
-      - echo "Running SonarQube Analysis..."
-      - sonar-scanner \
-          -Dsonar.organization=suyogredkar \
-          -Dsonar.projectKey=SuyogRedkar_x23419504-cdos-project \
-          -Dsonar.sources=. \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=SuyogRedkar_x23419504-cdos-project
+      - echo "Build phase ..."
+      - sonar-scanner -Dsonar.login=3a9a4d18967764e731d1e05341dfa447d8f08555 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
+      - sleep 5
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project >result.json
+      - cat result.json
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
 
 artifacts:
   files:
