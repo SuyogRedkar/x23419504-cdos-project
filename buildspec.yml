@@ -11,6 +11,8 @@ phases:
       - source env/bin/activate || . env/bin/activate
       - pip install --upgrade pip
       - pip install -r requirements.txt pylint
+      - apt-get install -y openjdk-17-jdk
+      - java -version
       # Install SonarQube Scanner
       - apt-get update
       - apt-get install -y jq
