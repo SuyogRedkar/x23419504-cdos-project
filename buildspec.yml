@@ -13,11 +13,11 @@ phases:
       - wget https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip 
       - unzip apache-maven-3.9.9-bin.zip
       - ln -s apache-maven-3.9.9 maven
-      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
-      - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
-      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
+      - wget https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/sonar-scanner-cli-7.1.0.4889.zip
+      - unzip ./sonar-scanner-cli-7.1.0.4889.zip
+      - export PATH=$PATH:/sonar-scanner-cli-7.1.0.4889/bin/
       - ls
-      - cd sonar-scanner-3.3.0.1492-linux
+      - cd sonar-scanner-cli-7.1.0.4889
       - ls
 
   build:
