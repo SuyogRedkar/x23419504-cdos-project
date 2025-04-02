@@ -3,29 +3,25 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.9
+      python: 3.8
 
-    commands:
-      - rm -rf env  # Delete any previous virtual environment
-      - python3 -m venv env
-      - source env/bin/activate || . env/bin/activate
-      - pip install --upgrade pip
-      - pip install -r requirements.txt pylint
-
-  pre_build:
     commands:
       - yum update -y
       - yum install -y python3 python3-pip wget java-21-amazon-corretto-devel
       - python3 -m pip install --upgrade pip
       - java -version  # Verify Java version
+
+  pre_build:
+    commands:
+      - echo "Setting up SonarScanner..."
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.0.2311-linux.zip
-      - unzip ./sonar-scanner-cli-4.6.0.2311-linux.zip
+      - unzip sonar-scanner-cli-4.6.0.2311-linux.zip
       - mv sonar-scanner-4.6.0.2311-linux sonar-scanner
       - export PATH=$PATH:./sonar-scanner/bin
-      - python --version
-      - ls
+      - sonar-scanner --version  # Verify SonarScanner installation
+
       - echo "Running pylint on project root..."
-      - pylint --disable=C,W,R *.py 
+      - pylint --disable=C,W,R *.py
       - echo "Running pylint on store_inventory..."
       - pylint --disable=C,W,R store_inventory/**/*.py
 
@@ -34,9 +30,9 @@ phases:
       - echo "Build phase ..."
       - sonar-scanner -Dsonar.login=3a9a4d18967764e731d1e05341dfa447d8f08555 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
       - sleep 5
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project >result.json
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project > result.json
       - cat result.json
-      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
+      - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ]; then $CODEBUILD_BUILD_SUCCEEDING -eq 0; fi
 
 artifacts:
   files:
