@@ -13,6 +13,7 @@ phases:
 
   pre_build:
     commands:
+      - pip install -r requirements.txt pylint
       - echo "Setting up SonarScanner..."
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.0.2311-linux.zip
       - unzip sonar-scanner-cli-4.6.0.2311-linux.zip
