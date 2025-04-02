@@ -10,8 +10,7 @@ phases:
       - yum install -y jq wget tar unzip
       - pip install -r requirements.txt pylint
       # Install Maven
-      - 
-      - yum install -y python3 python3-pip wget java-1.8.0-openjdk-devel
+      - yum install -y java-1.8.0-openjdk
       - python3 -m pip install --upgrade pip
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.0.2311-linux.zip
       - unzip ./sonar-scanner-cli-4.6.0.2311-linux.zip
