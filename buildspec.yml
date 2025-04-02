@@ -21,7 +21,7 @@ phases:
       - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
       - ls
       - export PATH=/sonar-scanner-cli-4.7.0.2747-linux/bin:$PATH
-      - ls -la /opt/sonar-scanner/bin
+      - ls -la /sonar-scanner-4.7.0.2747-linux/bin
       - sonar-scanner --version
 
   build:
