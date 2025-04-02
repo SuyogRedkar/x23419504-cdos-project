@@ -10,21 +10,24 @@ phases:
       - yum install -y jq wget tar unzip
       - pip install -r requirements.txt pylint
       # Install Maven
-      - wget http://www-eu.apache.org/dist/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz
-      - tar xzf apache-maven-3.5.4-bin.tar.gz
-      - ln -s apache-maven-3.5.4 maven
+      - wget https://downloads.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz
+      - tar xzf apache-maven-3.9.6-bin.tar.gz
+      - mv apache-maven-3.9.6 /opt/maven
+      - export PATH=/opt/maven/bin:$PATH
       - mvn -version
       
       # Install SonarScanner
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747-linux.zip
       - unzip sonar-scanner-cli-4.7.0.2747-linux.zip
       - ls
-      - export PATH=$PATH:/sonar-scanner-cli-4.7.0.2747-linux/bin/
+      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
+      - echo "Listing the directory structure..."
+      - ls -R
 
   build:
     commands:
-      - maven test
-      - maven sonar:sonar -Dsonar.login=3a9a4d18967764e731d1e05341dfa447d8f08555 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
+      - mvn test
+      - mvn sonar:sonar -Dsonar.login=3a9a4d18967764e731d1e05341dfa447d8f08555 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project > result.json
       - cat result.json
