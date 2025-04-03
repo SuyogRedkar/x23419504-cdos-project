@@ -19,7 +19,7 @@ phases:
       - mv sonar-scanner-3.3.0.1492-linux  sonar-scanner
       - export PATH=$PATH:./sonar-scanner/bin
       - ls
-      - cd sonar-scanner-3.3.0.1492-linux/bin
+      - cd sonar-scanner/bin
       - ls
       - echo $PATH
 
