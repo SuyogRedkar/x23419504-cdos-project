@@ -20,7 +20,6 @@ phases:
       - ls
       - cd sonar-scanner-3.3.0.1492-linux/bin
       - ls
-      - which sonar-scanner
       - echo $PATH
 
   build:
