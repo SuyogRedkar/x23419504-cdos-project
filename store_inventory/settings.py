@@ -27,7 +27,9 @@ SECRET_KEY = 'django-insecure-xmy25yr&n!o_ua$%2w92zsvh52tb_qm&g!q%0ioo8dgq*$f&-p
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://63d9e2df13b14349b2fcb9a5948e106a.vfs.cloud9.eu-west-1.amazonaws.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://63d9e2df13b14349b2fcb9a5948e106a.vfs.cloud9.eu-west-1.amazonaws.com'
+    ]
 
 # Application definition
 
