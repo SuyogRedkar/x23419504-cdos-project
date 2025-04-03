@@ -15,10 +15,13 @@ phases:
       - ln -s apache-maven-3.9.9 maven
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
       - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
-      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
+      - mv sonar-scanner-4.6.0.2311-linux  sonar-scanner
+      - export PATH=$PATH:./sonar-scanner/bin
       - ls
-      - cd sonar-scanner-3.3.0.1492-linux/bin
+      - cd sonar-scanner/bin
       - ls
+      - which sonar-scanner
+      - echo $PATH
 
   build:
     commands:
