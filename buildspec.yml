@@ -13,18 +13,16 @@ phases:
       - wget https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.zip 
       - unzip apache-maven-3.9.9-bin.zip
       - ln -s apache-maven-3.9.9 maven
-      - wget https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/sonar-scanner-cli-7.1.0.4889.zip
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
+      - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
+      - export PATH=$PATH:/sonar-scanner-3.3.0.1492-linux/bin/
       - ls
-      - unzip ./index.html?prefix=Distribution%2Fsonar-scanner-cli%2Fsonar-scanner-cli-7.1.0.4889.zip
-      - export PATH=$PATH:/sonar-scanner-cli-7.1.0.4889/bin/
-      - ls
-      - cd index.html?prefix=Distribution%2Fsonar-scanner-cli%2Fsonar-scanner-cli-7.1.0.4889
+      - cd sonar-scanner-3.3.0.1492-linux
       - ls
 
   build:
     commands:
-      - mvn test
-      - mvn sonar:sonar -Dsonar.login=3a9a4d18967764e731d1e05341dfa447d8f08555 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
+      - sonar-scanner -Dsonar.login=3a9a4d18967764e731d1e05341dfa447d8f08555 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project > result.json
       - cat result.json
