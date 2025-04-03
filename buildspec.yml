@@ -22,3 +22,7 @@ phases:
       - sleep 10
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project > result.json
       - cat result.json
+  
+  artifacts:
+  files:
+    - "**/*"
