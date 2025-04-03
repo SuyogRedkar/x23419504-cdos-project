@@ -5,3 +5,9 @@
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Virtual Environment
+env/
+
+# Python Bytecode Cache
+__pycache__/
