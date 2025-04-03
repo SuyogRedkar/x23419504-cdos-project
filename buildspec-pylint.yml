@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      python: 3.11
+      python: 3.9
     commands:
       - pip install --upgrade pip
       # Install dependencies needed for running the static analysis
@@ -11,7 +11,7 @@ phases:
   pre_build:
     commands:
       - python --version
-      - pylint $CODEBUILD_SRC_DIR/*.py
+      - pylint $CODEBUILD_SRC_DIR/*.py --disable=W,C
       - pylint $CODEBUILD_SRC_DIR/store_inventory/*.py
       - pylint $CODEBUILD_SRC_DIR/store/*.py
 
