@@ -14,6 +14,7 @@ phases:
       - pylint $CODEBUILD_SRC_DIR/*.py
       - pylint $CODEBUILD_SRC_DIR/store_inventory/*.py
       - pylint $CODEBUILD_SRC_DIR/store/*.py
+
+artifacts:
   files:
-    - '**/*'
-    
+    - "**/*"
