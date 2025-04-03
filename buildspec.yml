@@ -16,7 +16,8 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
       - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
       - ls
-      - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin
+      - mv sonar-scanner-3.3.0.1492-linux  sonar-scanner
+      - export PATH=$PATH:./sonar-scanner/bin
       - ls
       - cd sonar-scanner-3.3.0.1492-linux/bin
       - ls
@@ -24,7 +25,8 @@ phases:
 
   build:
     commands:
-      - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin
+      - export PATH=$PATH:./sonar-scanner/bin
+      - echo $PATH
       - sonar-scanner -Dsonar.login=3a9a4d18967764e731d1e05341dfa447d8f08555 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
       - sleep 5
       - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project > result.json
