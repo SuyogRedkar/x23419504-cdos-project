@@ -4,6 +4,7 @@ phases:
   install:
     runtime-versions:
       python: 3.9
+      java: corretto17
   pre_build:
     commands:
       - yum update -y
