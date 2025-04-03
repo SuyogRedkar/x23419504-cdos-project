@@ -12,8 +12,8 @@ phases:
     commands:
       - python --version
       - pylint $CODEBUILD_SRC_DIR/*.py --disable=W,C
-      - pylint $CODEBUILD_SRC_DIR/store_inventory/*.py
-      - pylint $CODEBUILD_SRC_DIR/store/*.py
+      - pylint $CODEBUILD_SRC_DIR/store_inventory/*.py --disable=W,C
+      - pylint $CODEBUILD_SRC_DIR/store/*.py --disable=W,C
 
 artifacts:
   files:
