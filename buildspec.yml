@@ -16,9 +16,9 @@ phases:
       - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip
       - unzip ./sonar-scanner-cli-3.3.0.1492-linux.zip
       - ls
-      - export PATH=$PATH:./sonar-scanner-cli-3.3.0.1492-linux/bin
+      - export PATH=$PATH:./sonar-scanner-3.3.0.1492-linux/bin
       - ls
-      - cd sonar-scanner-cli-3.3.0.1492-linux/bin
+      - cd sonar-scanner-3.3.0.1492-linux/bin
       - ls
       - which sonar-scanner
       - echo $PATH
