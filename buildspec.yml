@@ -18,7 +18,7 @@ phases:
       - ls
       - export PATH=$PATH:./sonar-scanner-cli-3.3.0.1492-linux/bin
       - ls
-      - cd sonar-scanner/bin
+      - cd sonar-scanner-cli-3.3.0.1492-linux/bin
       - ls
       - which sonar-scanner
       - echo $PATH
