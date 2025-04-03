@@ -24,5 +24,6 @@ phases:
       - cat result.json
   
   artifacts:
-  files:
-    - "**/*"
+    files:
+      - "**/*"
+      - "!**/*.zip"
