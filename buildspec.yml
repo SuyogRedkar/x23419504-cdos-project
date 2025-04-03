@@ -4,11 +4,10 @@ phases:
   install:
     runtime-versions:
       python: 3.9
-      java: openjdk17
   pre_build:
     commands:
       - yum update -y
-      - yum install -y jq wget tar unzip
+      - sudo yum install -y java-17-openjdk-devel
       - pip install -r requirements.txt pylint
       # Install Maven
       - python3 -m pip install --upgrade pip
