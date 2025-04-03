@@ -18,8 +18,8 @@ phases:
       - sonar-scanner --version
   build:
     commands:   
-      - sonar-scanner -Dsonar.login=8415922c5032ecb45cb707dca3aa3bff6f938797 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=SuyogRedkar_x23419504-cdos-project -Dsonar.organization=suyogredkar
+      - sonar-scanner -Dsonar.login=8415922c5032ecb45cb707dca3aa3bff6f938797 -Dsonar.host.url=https://sonarcloud.io -Dsonar.projectKey=x23419504-cdos-project -Dsonar.organization=suyogredkar
       - sleep 10
-      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=SuyogRedkar_x23419504-cdos-project > result.json
+      - curl https://sonarcloud.io/api/qualitygates/project_status?projectKey=x23419504-cdos-project > result.json
       - cat result.json
       - if [ $(jq -r '.projectStatus.status' result.json) = ERROR ] ; then $CODEBUILD_BUILD_SUCCEEDING -eq 0 ;fi
