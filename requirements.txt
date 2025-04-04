@@ -1,5 +1,5 @@
 asgiref==3.6.0
-astroid
+astroid==3.3.9
 beautifulsoup4==4.12.2
 bootstrap4==0.1.0
 certifi==2025.1.31
@@ -9,15 +9,20 @@ Django==4.2.20
 django-bootstrap4==1.1.1
 django-crispy-forms==2.3
 django-widget-tweaks==1.4.12
+exceptiongroup==1.2.2
 gunicorn==23.0.0
 idna==3.10
 importlib-metadata==1.7.0
-isort
+iniconfig==2.1.0
+isort==6.0.1
 mccabe==0.7.0
 packaging==24.2
 Pillow==9.5.0
 platformdirs==4.3.6
-pylint
+pluggy==1.5.0
+pylint==3.3.6
+pytest==8.3.5
+pytest-django==4.11.1
 pytz==2022.7.1
 requests==2.32.3
 soupsieve==2.4
@@ -26,5 +31,5 @@ stripe==11.6.0
 tomli==2.2.1
 tomlkit==0.13.2
 typing_extensions==4.5.0
-urllib3
+urllib3==2.3.0
 zipp==3.15.0
