@@ -7,6 +7,11 @@ from django.urls import reverse
 from django.conf import settings
 from django.http import JsonResponse
 from django.db.models import Sum
+from datetime import datetime
+from django.template.loader import render_to_string
+from weasyprint import HTML
+from django.http import HttpResponse
+import tempfile
 from .forms import StoreSignUpForm,StoreLoginForm, QuantityForm, ProductForm, AddStockForm, InvoiceForm, InvoiceProductForm
 from .models import Product, Order,Invoice, InvoiceProduct,Transaction
 
@@ -263,3 +268,21 @@ def transactions_list(request):
             pass  # Handle invalid date format gracefully
 
     return render(request, "transactions.html", {"transactions": transactions})
+    
+def download_invoice(request, invoice_id):
+    invoice = get_object_or_404(Invoice, id=invoice_id)
+    invoice_products = InvoiceProduct.objects.filter(invoice=invoice)
+    total_price = sum(item.total_price for item in invoice_products)
+
+    html_string = render_to_string('invoice_pdf.html', {
+        'invoice': invoice,
+        'invoice_products': invoice_products,
+        'total_price': total_price,
+    })
+
+    html = HTML(string=html_string)
+    result = html.write_pdf()
+
+    response = HttpResponse(result, content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename=invoice_{invoice.id}.pdf'
+    return response

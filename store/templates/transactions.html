@@ -20,39 +20,45 @@
     </form>
 
     <!-- Transactions Table -->
-    <table class="table table-bordered">
-        <thead class="thead-dark">
-            <tr>
-                <th>Invoice ID</th>
-                <th>Customer Name</th>
-                <th>Customer Number</th>
-                <th>Total Amount ($)</th>
-                <th>Date</th>
-                <th>Products</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for transaction in transactions %}
-            <tr>
-                <td>{{ transaction.invoice.id }}</td>
-                <td>{{ transaction.customer_name }}</td>
-                <td>{{ transaction.customer_number }}</td>
-                <td>${{ transaction.total_amount }}</td>
-                <td>{{ transaction.created_at|date:"Y-m-d H:i" }}</td>
-                <td>
-                    <ul>
-                        {% for product in transaction.get_products %}
-                        <li>{{ product.name }} - ${{ product.price }} x {{ product.quantity }}</li>
-                        {% endfor %}
-                    </ul>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="6" class="text-center">No transactions found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>Invoice ID</th>
+            <th>Customer Name</th>
+            <th>Customer Number</th>
+            <th>Total Amount ($)</th>
+            <th>Date</th>
+            <th>Products</th>
+            <th>Actions</th> <!-- New Column -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+        <tr>
+            <td>{{ transaction.invoice.id }}</td>
+            <td>{{ transaction.customer_name }}</td>
+            <td>{{ transaction.customer_number }}</td>
+            <td>${{ transaction.total_amount }}</td>
+            <td>{{ transaction.created_at|date:"Y-m-d H:i" }}</td>
+            <td>
+                <ul>
+                    {% for product in transaction.get_products %}
+                    <li>{{ product.name }} - ${{ product.price }} x {{ product.quantity }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+            <td>
+                <a href="{% url 'download_invoice' transaction.invoice.id %}" class="btn btn-sm btn-outline-success">
+                    Download PDF
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center">No transactions found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 </div>
 {% endblock %}

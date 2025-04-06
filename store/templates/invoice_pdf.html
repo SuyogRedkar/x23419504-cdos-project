@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Invoice #{{ invoice.id }}</title>
+    <style>
+        body { font-family: sans-serif; }
+        h2 { text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        table, th, td { border: 1px solid black; padding: 8px; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h2>Invoice #{{ invoice.id }}</h2>
+    <p><strong>Customer Name:</strong> {{ invoice.customer_name }}</p>
+    <p><strong>Customer Number:</strong> {{ invoice.customer_number }}</p>
+    <p><strong>Date:</strong> {{ invoice.created_at|date:"Y-m-d H:i" }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price ($)</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in invoice_products %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>${{ item.product.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.total_price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 style="text-align: right;">Total Amount: ${{ total_price }}</h3>
+</body>
+</html>
+{% endblock %}
